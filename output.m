@@ -2,37 +2,56 @@
 % given data
 
 % inputs:
-% t - time
-% c - column needed for plot
+% x - x axis data
+% y - y axis data
 % n - plot name
-% x - xlabel
-% y - ylabel
+% xl - xlabel
+% yl - ylabel
+% t - time? [yes(1) or no(0)]
+% o - remove outliers? [yes(1) or no(0)]
+% z - z axis data [optional]
+% zl - zlabel [optional]
 
-function output(t,c,n,x,y)
+function output(x,y,n,xl,yl,t,o,z,zl)
 
-t1 = t(1,1);
-
-for i = 1:height(t)
-    t(i,1) = t(i,1) - t1;
+if nargin < 8
+    z = 0;
 end
 
-%%% - comment this section out to keep outliers
-% TF = isoutlier(c);
-% 
-% for j = 1:height(TF)
-%     if TF(j,1) == 1
-%         t(j) = [];
-%     end
-% end
-% 
-% c = rmoutliers(c);
-%%% - comment this section out to keep outliers
+if t == 1 % time on x axis
+    t1 = x(1,1);
+    
+    for i = 1:height(x)
+        x(i,1) = x(i,1) - t1;
+    end
+end
 
-figure();
-plot(t, c, 'b-', 'LineWidth', 2);
-grid on;
-title(n);
-xlabel(x);
-ylabel(y);
+if o == 1 % remove outliers
+    TF = isoutlier(y);
+    
+    for j = 1:height(TF)
+        if TF(j,1) == 1
+            x(j) = [];
+        end
+    end
+    
+    y = rmoutliers(y);
+end
 
+if z == 0
+    figure();
+    plot(x, y, 'b-', 'LineWidth', 2);
+    grid on;
+    title(n);
+    xlabel(xl);
+    ylabel(yl);
+else
+    figure();
+    plot3(x, y, z, 'b-', 'LineWidth', 2);
+    grid on;
+    title(n);
+    xlabel(xl);
+    ylabel(yl);
+    zlabel(zl);
+end
 end
