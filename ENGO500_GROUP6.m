@@ -23,34 +23,34 @@ P = readtable('BESTGNSSPOS_HPP.csv');
 % multiplot(x1,y1,x2,y2,name,xlabel,ylabel,legend1,legend2,1,0);
 
 %% 2d position error - INS
-% x1 = M.lon(:);
-% y1 = M.lat(:);
-% x2 = N.lon(:);
-% y2 = N.lat(:);
-% e2ins = error2(x1,y1,x2,y2,1);
-% 
-% y = e2ins;
-% x = M.seconds(:);
-% name = "2D Position Error - Highway - INS - OEM7500 v PwrPak";
-% xlabel = "Duration [seconds]";
-% ylabel = "2D Position Error [m]";
-% 
-% singleplot(x,y,name,xlabel,ylabel,1,0);
+x1 = M.lon(:);
+y1 = M.lat(:);
+x2 = N.lon(:);
+y2 = N.lat(:);
+e2ins = errors(x1,y1,x2,y2,1);
+
+y = e2ins;
+x = M.seconds(:);
+name = "2D Position Error - Highway - INS - OEM7500 v PwrPak";
+xlabel = "Duration [seconds]";
+ylabel = "2D Position Error [m]";
+
+singleplot(x,y,name,xlabel,ylabel,1,0);
 
 %% 2d position error - No INS
-% x1 = O.lon(:);
-% y1 = O.lat(:);
-% x2 = P.lon(:);
-% y2 = P.lat(:);
-% e2gnss = error2(x1,y1,x2,y2,1);
-% 
-% y = e2gnss;
-% x = O.seconds(:);
-% name = "2D Position Error - Highway - No INS - OEM7500 v PwrPak";
-% xlabel = "Duration [seconds]";
-% ylabel = "2D Position Error [m]";
-% 
-% singleplot(x,y,name,xlabel,ylabel,1,0);
+x1 = O.lon(:);
+y1 = O.lat(:);
+x2 = P.lon(:);
+y2 = P.lat(:);
+e2gnss = errors(x1,y1,x2,y2,1);
+
+y = e2gnss;
+x = O.seconds(:);
+name = "2D Position Error - Highway - No INS - OEM7500 v PwrPak";
+xlabel = "Duration [seconds]";
+ylabel = "2D Position Error [m]";
+
+singleplot(x,y,name,xlabel,ylabel,1,0);
 
 %% latitude v longitude - INS
 % x1 = M.lon(:);

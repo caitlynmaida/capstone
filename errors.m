@@ -14,7 +14,7 @@ x = x2 - x1;
 y = y2 - y1;
 
 if m == 1
-    e = sqrt(x.^2 + y.^2) * (10000000/90);
+    [e,az] = distance(y1,x1,y2,x2,referenceEllipsoid('wgs84'));
 else
     e = sqrt(x.^2 + y.^2);
 end
