@@ -6,7 +6,7 @@
 % m - convert to meters? [yes(1) or no(0)]
 %
 % outputs:
-% error2 - error datasets
+% e - error dataset
 
 function e = errors(x1,y1,x2,y2,m)
 

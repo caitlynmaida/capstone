@@ -27,6 +27,8 @@ if t == 1 % time on x axis
     
     for i = 1:height(x1)
         x1(i,1) = x1(i,1) - t11;
+    end
+    for i = 1:height(x2)
         x2(i,1) = x2(i,1) - t12;
     end
 end
@@ -39,6 +41,8 @@ if o == 1 % remove outliers
         if TF1(j,1) == 1
             x1(j) = [];
         end
+    end
+    for j = 1:height(TF2)
         if TF2(j,1) == 1
             x2(j) = [];
         end
